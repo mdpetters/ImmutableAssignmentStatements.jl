@@ -1,6 +1,6 @@
 # ImmutableAssignmentStatements.jl
 
-*A simple Julia package to enforce pseudo-immutablity.*
+*A simple Julia package to enforce pseudo-immutablity*
 
 
 # Installation
