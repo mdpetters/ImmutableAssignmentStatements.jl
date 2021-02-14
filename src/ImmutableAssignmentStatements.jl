@@ -31,12 +31,12 @@ ERROR: "cannot assign variable y; it already has a value"
 ```
 """
 macro def(ex::Expr) 
-    f = esc(ex.args[1])
-    err = "cannot assign variable $(ex.args[1]); it already has a value"
+    f = typeof(ex.args[1]) == Symbol ? [esc(ex.args[1])] : esc.(ex.args[1].args)
+    err = "cannot assign variable(s) $(ex.args[1]); it already has a value"
     assignit = Meta.parse("$(ex.args[1]) = $(ex.args[2])") 
-    defined = Expr(:isdefined, f) 
+    defined = Expr(:call, (|), map(x -> Expr(:call, :eval, Expr(:isdefined, x)), f)...)
     quote 
-        if $defined 
+        if $(defined)
             throw($err) 
         else 
             :($$assignit) 
@@ -45,3 +45,4 @@ macro def(ex::Expr)
 end
 
 end
+
