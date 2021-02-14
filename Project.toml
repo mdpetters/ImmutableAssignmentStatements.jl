@@ -1,0 +1,13 @@
+name = "ImmutableAssignmentStatements"
+uuid = "cffcb028-e453-40a8-95bc-0bfd2fc6fb43"
+authors = ["Markus Petters"]
+version = "0.1.0"
+
+[compat]
+julia = "1.5.3"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
